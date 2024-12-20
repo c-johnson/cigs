@@ -21,6 +21,8 @@
         height: 500px;
         width: 314px;
 
+        margin: 100px auto;
+
         --pack-height: 500px;
         --pack-width: 314px;
 
@@ -48,6 +50,13 @@
 
           height: 250px;
           width: var(--pack-width);
+        }
+
+        /* TODO: Fix this */
+        .menthol-black-cover h3 {
+          color: green;
+          margin: 50px auto 0;
+          text-align: center;
         }
 
         .menthol-black-cover-stripe {
@@ -113,7 +122,9 @@
   <body>
     <div class="the-stuff">
       <div name="Marlboro" class="pack menthol-black">
-        <div class="menthol-black-cover"></div>
+        <div class="menthol-black-cover">
+          <h3>MENTHOL</h3>
+        </div>
         <div class="menthol-black-cover-stripe"></div>
         <div class="menthol-black-cover-caret-fill"></div>
         <div class="menthol-black-body-fill">
@@ -127,16 +138,16 @@
       </div>
 
       <div>
-        <canvas id="raster-image"> </canvas>
+        <label>Select file</label>
+        <input id="selectFile" type="file" />
       </div>
+
+      <!-- <div>
+        <canvas id="raster-image"> </canvas>
+      </div> -->
     </div>
 
     <!-- Write a thing that takes in an image file, prints it to a <canvas> element, and then reads those pixels in order, then does other stuff. -->
-
-    <script type="javascript">
-      const sampler = () => {
-
-      }
-    </script>
+    <script type="javascript" src="index.js" defer></script>
   </body>
 </html>
