@@ -49,11 +49,31 @@ const renderCSS = ({ cssElement, show }) => {
 const renderCanvas = ({ canvasElement, imageData }) => {
   const ctx = canvasElement.getContext("2d");
 
+  // Q: Background color for <canvas>?
+  // https://stackoverflow.com/a/27645436/28971795
+  // i think nearest solution is using drawimage before drawing canvas object
+
+  // this.drawImage({
+  //     image:"imagebg2.png", // image filled by bg color
+  //     destRect : [0, 0, this.Canvas1.width, this.Canvas1.height]
+  // });
+
   ctx.fillStyle = "rgb(200 0 0)";
   ctx.fillRect(10, 10, 50, 50);
 
   ctx.fillStyle = "rgb(0 0 200 / 50%)";
   ctx.fillRect(30, 30, 50, 50);
+
+  const context = new CanvasRenderingContext2D();
+
+  // ****************************************
+  // Q: Ok design nerds
+  //      What is the best font to use
+  //      🔫
+  // ****************************************
+  ctx.font = `72px Verdana`;
+  ctx.filleStyle = "white";
+  ctx.fillText("Hello!", 200, 100, 300);
 
   logState({ ctx });
 };
