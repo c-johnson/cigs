@@ -1,8 +1,9 @@
 const setup = () => {
   /* Grab elements */
-  const rasterImageOutput = document.getElementById("raster-image");
+  const rasterElement = document.getElementById("raster-image");
   const selectFileInput = document.getElementById("select-file");
   const canvasElement = document.getElementById("canvas-workstation");
+  const cssElement = document.getElementById("css-output");
 
   /* Objects */
   let fileReader = new FileReader();
@@ -19,7 +20,9 @@ const setup = () => {
         const base64ImageData = ev.target.result;
         logState({ base64ImageData });
 
-        renderCanvasContext({ canvasElement, imageData: base64ImageData });
+        renderRaster({ rasterElement, imageData: base64ImageData });
+        renderCanvas({ canvasElement, imageData: base64ImageData });
+        renderCSS({ cssElement, show: true });
       };
 
       fileReader.readAsDataURL(file);
@@ -29,7 +32,21 @@ const setup = () => {
   });
 };
 
-const renderCanvasContext = ({ canvasElement, imageData }) => {
+const renderRaster = ({ rasterElement, imageData }) => {
+  rasterElement.classList.remove("hidden");
+  rasterElement.src = imageData;
+};
+
+const renderCSS = ({ cssElement, show }) => {
+  if (show) {
+    cssElement.classList.remove("hidden");
+  }
+  if (!show) {
+    cssElement.classList.add("hidden");
+  }
+};
+
+const renderCanvas = ({ canvasElement, imageData }) => {
   const ctx = canvasElement.getContext("2d");
 
   ctx.fillStyle = "rgb(200 0 0)";
@@ -39,7 +56,6 @@ const renderCanvasContext = ({ canvasElement, imageData }) => {
   ctx.fillRect(30, 30, 50, 50);
 
   logState({ ctx });
-  debugger;
 };
 
 // TODO: Typescript-ify this up later

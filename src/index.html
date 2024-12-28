@@ -6,6 +6,7 @@
 
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="./index.css"></link>
     <style>
       :root {
         --off-white: #f2f6ef;
@@ -19,7 +20,7 @@
         height: 500px;
         width: 313px;
 
-        margin: 100px auto;
+        margin: 0 auto;
 
         --pack-height: 500px;
         --pack-width: 313px;
@@ -118,9 +119,9 @@
   </head>
 
   <body>
-    <div style="display: flex; justify-content: space-between;">
-      <div style="display: flex; flex-direction: column;">
-        <div style="display: flex; justify-content: space-between;"> 
+    <div style="display: flex; justify-content: space-between; padding: 50px">
+      <div style="display: flex; flex-direction: column">
+        <div style="display: flex; justify-content: space-between">
           <h4>Input:</h4>
           <div>
             <label>Select file</label>
@@ -128,11 +129,13 @@
           </div>
         </div>
         <h1>===</h1>
-        <img id="raster-image"> </img>
+        <div>
+          <img id="raster-image" height="500" width="313" class="hidden" style="width: 100%"/>
+        </div>
       </div>
 
       <div>
-        <div style="display: flex; justify-content: space-between;"> 
+        <div style="display: flex; justify-content: space-between">
           <h4>Workstation:</h4>
           <div>
             <span>data source: </span>
@@ -140,24 +143,28 @@
           </div>
         </div>
         <h1>===</h1>
-        <canvas id="canvas-workstation" role="presentation" height="500" width="313"></canvas>
+        <canvas
+          id="canvas-workstation"
+          role="presentation"
+          height="500"
+          width="313"
+        ></canvas>
       </div>
 
       <div>
         <h4>Output:</h4>
         <h1>===</h1>
-      </div>
-
-      <div name="Marlboro" class="pack menthol-black">
-        <div class="menthol-black-cover">
-          <h3>MENTHOL</h3>
+        <div id="css-output" class="pack menthol-black hidden">
+          <div class="menthol-black-cover">
+            <h3>MENTHOL</h3>
+          </div>
+          <div class="menthol-black-cover-stripe"></div>
+          <div class="menthol-black-cover-caret-fill"></div>
+          <div class="menthol-black-body-fill">
+            <h1 class="marlboro-text">Marlboro</h1>
+          </div>
+          <div class="menthol-black-footer-fill"></div>
         </div>
-        <div class="menthol-black-cover-stripe"></div>
-        <div class="menthol-black-cover-caret-fill"></div>
-        <div class="menthol-black-body-fill">
-          <h1 class="marlboro-text">Marlboro</h1>
-        </div>
-        <div class="menthol-black-footer-fill"></div>
       </div>
     </div>
 
