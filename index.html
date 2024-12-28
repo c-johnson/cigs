@@ -1,11 +1,9 @@
-<!--
-  TODO!: 
-    - Write a color sampler 
-    - Finish the design
-    - Fix proportions
+<!DOCTYPE html>
+
+<!-- Note: 
+      - This design is optimized for a 14", Retina, Macbook Pro screen.
 -->
 
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <style>
@@ -121,6 +119,28 @@
 
   <body>
     <div class="the-stuff">
+      <div>
+        <div> 
+          <h4>Input </h4>
+          <img id="raster-image"> </img>
+
+          <div>
+            <label>Select file</label>
+            <input id="select-file" type="file" name="imageFile" />
+          </div>
+        </div>
+        <h1>===</h1>
+      </div>
+
+      <div>
+        <h4>Workstation:</h4>
+        <h1>===</h1>
+      </div>
+
+      <div>
+        <h4>Output:</h4>
+      </div>
+
       <div name="Marlboro" class="pack menthol-black">
         <div class="menthol-black-cover">
           <h3>MENTHOL</h3>
@@ -131,24 +151,6 @@
           <h1 class="marlboro-text">Marlboro</h1>
         </div>
         <div class="menthol-black-footer-fill"></div>
-      </div>
-
-      <div>
-        <h1>===</h1>
-      </div>
-
-      <div>
-        <label>Select file</label>
-        <input id="select-file" type="file" name="imageFile" />
-      </div>
-
-      <div>
-        <h1>===</h1>
-      </div>
-
-      <div>
-        <h4>Output:</h4>
-        <image id="raster-image"> </image>
       </div>
     </div>
 
