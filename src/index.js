@@ -75,7 +75,25 @@ const renderCanvas = ({ canvasElement, imageData }) => {
   ctx.filleStyle = "white";
   ctx.fillText("Hello!", 200, 100, 300);
 
-  logState({ ctx });
+  // ****************************************
+  //      More drawing examples
+  // ****************************************
+
+  // Change Canvas font:
+  // https://stackoverflow.com/questions/58287374/how-to-change-font-size-of-canvas-text
+
+  // ctx.fillStyle = "blue";
+  // ctx.fillRect(0, 0, 500, 100);
+
+  // ctx.font = `50px Verdana`;
+  // ctx.fillStyle = "white";
+  // ctx.fillText("Hello!", 120, 60, 300);
+
+  // ****************************************
+  //      //developer.mozilla.org/en-US/play
+  // ****************************************
+
+  https: logState({ ctx });
 };
 
 // TODO: Typescript-ify this up later
