@@ -1,24 +1,29 @@
 const setup = () => {
-  debugger;
-  const selectFileInput = document.getElementById("selectFile");
+  const rasterImageOutput = document.getElementById("raster-image");
+  const selectFileInput = document.getElementById("select-file");
+  let fileReader = new FileReader();
 
   window.imageFile = window.imageFile || {};
+  window.imageObj = window.imageObj || {};
 
   selectFileInput.addEventListener("change", (event) => {
     const file = event.target.files[0];
 
-    debugger;
-
     if (file) {
-      debugger;
-      const image = new Image();
-      const objectURL = URL.createObjectURL(file);
+      fileReader.onload = (ev) => {
+        const base64file = ev.target.result;
+        console.log("base64file :>> ", base64file);
 
-      image.src = objectURL;
+        rasterImageOutput.src = base64file;
+
+        window.imageFile = file;
+        window.imageObj = base64file;
+      };
+
+      fileReader.readAsDataURL(file);
+    } else {
+      console.log("file not a thing");
     }
-
-    window.imageFile = file;
-    window.imageObj = image;
 
     logState();
   });

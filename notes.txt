@@ -1,0 +1,148 @@
+- A `File` object is returned from an `<input type="file">` element.
+  - See: https://developer.mozilla.org/en-US/docs/Web/API/File
+  - `document.addEventListener('change', (event: Event) => {})`
+  - `event.target.files[0]` gives you a `File`
+  - A `File` is an [type? instance?] of a `Blob`
+  - A `Blob` can be converted to a `ReadableStream`, via the function:
+    - 1: `Blob.stream()`
+    - 2: `blob.stream()` 
+      See: https://developer.mozilla.org/en-US/docs/Web/API/Blob
+  - A `ReadableStream` can be:
+    `locked` - 
+      See: https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/locked
+        - A stream can only have one active `Reader` at a time
+        - A stream is locked to that reader until it is released
+          E.g., `readableStream.getReader()` returns a new active reader
+                `stream.locked` should return `true`
+    
+    TODO:
+    "instantiated" - `Fetch` context, ?
+      1: `fetch(url).then(blobData); blobData.stream()`
+      2: `fetch(url).then(blobData); ???`
+
+      See: https://imgur.com/a/eakPTIF 
+
+      3: `fetch(url).then(response => response.body: ReadableStream)`
+
+    TODO:
+    "instantiated" - `File` context, ?
+      1: `File.stream()`
+      2: `File. ???`
+
+    "instantiated" - `ReadableStream.from(anyIterable)`
+      `anyIterable`:
+        - 1: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterable_protocol
+        - 2: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_async_iterator_and_async_iterable_protocols 
+        
+
+    `ReadableStream` examples!:
+      - https://github.com/mdn/dom-examples/tree/main/streams 
+
+  - `stream: ReadableStream`
+    - `const reader = stream.getReader()`
+
+      "A ReadableStreamDefaultReader or ReadableStreamBYOBReader object instance, depending on the mode value." - https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/getReader
+
+  - `reader: ReadableStreamDefaultReader`
+      -> `stream.locked` = `true`
+    - `releaseLock` - releases the lock.
+      -> `stream.locked` = `false`
+    - `read()` - reads the stream
+      { Since we called `reader.releaseLock()`, we get the following error message: "ReadableStreamDefaultReader.read: Reading is not possible after calling releaseLock"}
+      { So, we're presuming this `reader` is basically garbage, now.}
+      { Q: Is there a way to "re-attach" this `reader` back to the `stream` object? Like, re-lock it?}
+    - `closed` - some metadata
+
+      "Returns a Promise that fulfills when the stream closes, rejects if the stream throws an error, or the reader's lock is released." - https://developer.mozilla.org/en-US/docs/Web/API/ReadableStreamDefaultReader 
+
+    - `cancel` - higher-level way to release lock, basically - ? 
+
+      "Returns a Promise that resolves when the stream is canceled. Calling this method signals a loss of interest in the stream by a consumer. The supplied reason argument will be given to the underlying source, which may or may not use it."
+
+      - Calling `reader.cancel()`
+        - `stream.locked` is still `true`
+        - `reader.read` still works 
+          1: It has the data 
+          2: It doesn't have the data 
+        
+          `reader.read().then(value => console.log('value = ', value))` returns: 
+            { done: true, value: undefined}
+
+      - Calling `reader.read()`
+        - `reader.read().then(value => console.log('value = ', value))` returns:
+            { done: false, value: Uint8Array(20480) }
+
+- A `FileReader` object is used to read the contents of a (my word) `fileObjectString`,
+  - `fileObjectString: string`
+    -  like: "blob:null/cc955b5d-3239-415a-9402-500a165c2833"
+    -  instantiated: from `URL.createObjectString(file)`
+    - `file` obtained from `<input type="text">` user selection
+      - See: https://developer.mozilla.org/en-US/docs/Web/API/File
+  - instantiated: normally, with no options
+
+- `fileReader: FileReader`
+  - 1: `fileReader.readAsText`
+    - Can read file contents directly from `event.target.files[0]` during `change` handler
+  - 2: `fileReader.readAsDataURL`
+    - ? Our preferred method ?
+  - 3: `fileReader.readAsArrayBuffer`
+    - Some other way.
+
+- `fileReader: FileReader` properties
+  - `readyState` - { 
+      EMPTY: 0, no data has been loaded yet, 
+      LOADING: 1, data is currently being loaded, 
+      DONE: 2, the entire read request has been completed
+    }
+  - `error: DOMException` - error that occured while reading the file 
+  - `result: any` - The file's contents
+    - See: https://developer.mozilla.org/en-US/docs/Web/API/FileReader/result
+
+    depends on if called with:
+      `reader.readAsText()` -> ? presumably, UTF-8 string
+      `reader.readAsDataURL()` -> ? `blob:` or `data:` - encoded format ? base 64 ?
+      `reader.readAsBinaryString()` -> ? string ? of binary ? like: "001010100010100" ?
+      `reader.readAsArrayBuffer()` -> ? presumably, UInt8Array, or similar? [ArrayBuffer]
+
+    - ArrayBuffer - "an array of bytes"
+      - See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer 
+
+- Data URL encoding scheme
+  - See: https://developer.mozilla.org/en-US/docs/Web/URI/Schemes/data
+  - format: `data:[<media-type>][;base64],<data>`
+  - MIME types - "multipurpose internet mail extensions", or IANA media types
+    - examples:
+      - "text/plain" - plain text
+      - "text/html" - html text
+      - "text/css" - css text
+      - "application/javascript" - javascript text
+      - "image/png" - png image, lossless compression
+        - Q: Is this "nonbinary", i.e., does it require `;base64` in data URL string?
+      - "image/jpeg" - jpeg image, good for photos, lossy compression
+      - "image/gif" - gif, animated image, limited colors
+      - "image/svg+xml" - svg, xml, or vector image
+      - "image/webp" - webp, video image. "modern format offering supperior compression"
+      - "font/woff" - fonts, efficient for web delivery
+      - "font/woff2" - fonts, improved compression and performance
+        - Q: I can't tell the difference between these two
+      - "application/json" - data format, JSON-standardized object (or "POJO")
+      - "application/xml" - data format, XML (boring, old)
+      - "text/xml" - data format, treated as plain text, XML (boring, old)
+      - "application/pdf" - pdf document
+      - "application/msword" - word document
+      - "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        - Some bullshit, I'm not learning this.
+      - "audio/mpeg" - mpeg, audio file, mp3
+      - "audio/mp4" - mp4, video file, mp4
+      - "application/octet-stream" - arbitrary binary data
+      - "application/zip" - zip archives, common for packaging and compressing files
+      - "text/event-stream" - server-sent events
+        - See: https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events
+        - See: https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events 
+      - "application/x-www-form-urlencoded" - form data, sent from the `submit` event of a `<form>` element, commonly used to submit data via HTTP POST (per gpt)
+        - See: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
+        - See: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Sending_and_retrieving_form_data 
+    - See: https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types 
+
+- Example: Sending an `application/x-www-form-urlencoded` HTTP request, via POST, to a backend server 
+❤️🙇
