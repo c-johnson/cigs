@@ -9,6 +9,8 @@ TODO:
       - DOM element: `<canvas>`
         - to use the Canvas API to run more advanced operations on the image source data.
         - e.g., to sample the `$grey-bg-top` area, above the green stripe, by mapping out the base64-encoded data onto a pixellated grid, we are able to easily read the pixel values one-by-one with basic Canvas operations.
+        - See: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_usage 
+        - See: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D 
       - [ Concept ] Essentially, this is a "workstation" visual pane. 
     - "Visual Pane 3", on the right-hand side, is the result, the rendered output of your source code.
       - DOM element: also a `<canvas>`, most likely.

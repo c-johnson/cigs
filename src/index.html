@@ -17,12 +17,12 @@
         position: relative;
 
         height: 500px;
-        width: 314px;
+        width: 313px;
 
         margin: 100px auto;
 
         --pack-height: 500px;
-        --pack-width: 314px;
+        --pack-width: 313px;
 
         /* Pack size */
 
@@ -118,27 +118,34 @@
   </head>
 
   <body>
-    <div class="the-stuff">
-      <div>
-        <div> 
-          <h4>Input </h4>
-          <img id="raster-image"> </img>
-
+    <div style="display: flex; justify-content: space-between;">
+      <div style="display: flex; flex-direction: column;">
+        <div style="display: flex; justify-content: space-between;"> 
+          <h4>Input:</h4>
           <div>
             <label>Select file</label>
             <input id="select-file" type="file" name="imageFile" />
           </div>
         </div>
         <h1>===</h1>
+        <img id="raster-image"> </img>
       </div>
 
       <div>
-        <h4>Workstation:</h4>
+        <div style="display: flex; justify-content: space-between;"> 
+          <h4>Workstation:</h4>
+          <div>
+            <span>data source: </span>
+            <span><u>(tbd)</u></span>
+          </div>
+        </div>
         <h1>===</h1>
+        <canvas id="canvas-workstation" role="presentation" height="500" width="313"></canvas>
       </div>
 
       <div>
         <h4>Output:</h4>
+        <h1>===</h1>
       </div>
 
       <div name="Marlboro" class="pack menthol-black">
