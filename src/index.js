@@ -1,3 +1,5 @@
+import { getAlgorithms } from "./algorithms.js";
+
 const setup = () => {
   /* Grab elements */
   const rasterElement = document.getElementById("raster-image");
@@ -7,6 +9,9 @@ const setup = () => {
 
   /* Objects */
   let fileReader = new FileReader();
+
+  console.log("getAlgorithms :>> ", getAlgorithms);
+  debugger;
 
   window.imageFile = window.imageFile || {};
   window.imageObj = window.imageObj || {};
