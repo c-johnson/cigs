@@ -1,4 +1,4 @@
-import { getAlgorithms } from "./algorithms.js";
+const ALGORITHMS = [() => {}, () => {}];
 
 const setup = () => {
   /* Grab elements */
@@ -9,9 +9,6 @@ const setup = () => {
 
   /* Objects */
   let fileReader = new FileReader();
-
-  console.log("getAlgorithms :>> ", getAlgorithms);
-  debugger;
 
   window.imageFile = window.imageFile || {};
   window.imageObj = window.imageObj || {};
@@ -68,8 +65,6 @@ const renderCanvas = ({ canvasElement, imageData }) => {
 
   ctx.fillStyle = "rgb(0 0 200 / 50%)";
   ctx.fillRect(30, 30, 50, 50);
-
-  const context = new CanvasRenderingContext2D();
 
   // ****************************************
   // Q: Ok design nerds
