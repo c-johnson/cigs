@@ -6,7 +6,7 @@ const getAlgorithms = () => {
     console.log("running algorithm 1");
   };
 
-  // algorithms.push(algorithm1);
+  algorithms.push(algorithm1);
 
   return algorithms;
 };

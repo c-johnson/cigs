@@ -1,6 +1,13 @@
 // The latest and greatest in artifical intelligence!
 const ALGORITHMS = [() => {}, () => {}];
 
+if (window.sampler) {
+  console.log("window.sampler - loaded");
+  window.sampler();
+} else {
+  console.log("window.sampler - not loaded");
+}
+
 const setup = () => {
   /* Grab elements */
   const rasterElement = document.getElementById("raster-image");

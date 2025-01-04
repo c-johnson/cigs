@@ -1,33 +1,40 @@
 Main project:
 
-  [Description of this project -- a web-based GUI tool for image uploading, image manipulation, and generated image output]
-  [Uses `<input type="file">` (for file uploads), `<canvas>` (for image manipulation), and CSS3 / gradient vectors for final, **vectorized** output ]
-  [Tldr; 1) take a rasterized image, 2) make it vectorized ]
+  Description: a web-based GUI tool for image uploading, image manipulation, and generated image output
+  
+  Uses: 
+    - `<input type="file">` (for file uploads), 
+    - `<canvas>` (for image manipulation), and 
+    - CSS3 / gradient vectors for final, **vectorized** output
+
+  Tldr; 
+    1) take a rasterized image, 
+    2) make it vectorized
   
   Program name: raster-2-vector
 
   Phase 1 
 
       TODO:
-        - [UI] Display three main Visual Pane columns (or "panel", perhaps) side-by-side, covering most of the screen. [display = flexbox]
-          - "Visual Pane 1", on the left-hand side, is the reference image.
+        - [x] [UI] Display three main Visual Pane columns (or "panel", perhaps) side-by-side, covering most of the screen. [display = flexbox]
+          - [x] "Visual Pane 1", on the left-hand side, is the reference image.
             - DOM element: <img src="">
             - DOM elmeent: `<input type="file">`
               - to select the reference image from your filesystem.
               - loaded file needed to populate <canvas> block in VB2
-          - "Visual Pane 2", in the middle, is the `<canvas>` element
+          - [x] "Visual Pane 2", in the middle, is the `<canvas>` element
             - DOM element: `<canvas>`
               - to use the Canvas API to run more advanced operations on the image source data.
               - e.g., to sample the `$grey-bg-top` area, above the green stripe, by mapping out the base64-encoded data onto a pixellated grid, we are able to easily read the pixel values one-by-one with basic Canvas operations.
               - See: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_usage 
               - See: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D 
             - [ Concept ] Essentially, this is a "workstation" visual pane. 
-          - "Visual Pane 3", on the right-hand side, is the result, the rendered output of your source code.
+          - [x] "Visual Pane 3", on the right-hand side, is the result, the rendered output of your source code.
             - DOM element: also a `<canvas>`, most likely.
             - [ Task ] - Upgrade from <image> to <canvas> for the rendered part.
-        - Finish sampling code
-        - Figure out how to do the fonts
-        - Figure out how to do the vector graphics
+        - [ ] Finish sampling code
+        - [ ] Figure out how to do the fonts
+        - [ ] Figure out how to do the vector graphics
           1: Sit down and learn the process for transcribing vector graphics by hand
           2: Figure out some process to make this process easier
           3: Find someone who knows this process and have them tell you the best thing to do
@@ -37,12 +44,21 @@ Main project:
             Notably, what we're not wanting here is {good tool for drawing vector graphics}.
               - We're just transpiling from existing images, however easiest it is to do that.
               - If we have to learn to draw a few vector path things then so be it, but would prefer not to if possible. {3} is best.
-        - Do the vector graphics part
+        - [ ] Do the vector graphics part
 
-  Phase 2 
+  Phase 2
+    - Add tooling:
+      - Webpack, Gulp, Rollup, or some kind of build system (bun.js - ?)
+      - Typescript
+        - Manually run `tsc` to do one-time Typescript type-checking
+        - "Vanilla" typescript -- a new thing.
+      - Modules (ES6)
+        - Add ES6 modules
+
+  Phase 3 
     - Make a slider, which increases the vertical size of the image, corellating with "cigarette length"
       - 2 sizes: normal, and "100s"
     - [Note] -- This should probably be a separate project / repository from `raster-2-image`, which I'd like to leave as its own package.
 
-  Phase 3
+  Phase 4
     - Upgrade to 3D
