@@ -1,7 +1,44 @@
+/* Basic */
+
 * {
   box-sizing: border-box;
 }
 
 .hidden {
   visibility: hidden;
+}
+
+:root {
+  --off-white: #f2f6ef;
+  --off-grey: #232323;
+  --off-green: #00ab92;
+}
+
+/* Components */
+
+/* --- */
+
+/* Pack */
+
+/* Pack size */
+
+/*
+  * Top part: 250px
+  * 2nd part: 20px
+  * Top part: 220px
+  * Top part: 10px
+  * Total Height: 500px
+
+  * Width: 943px / 3 = ~315px
+*/
+.pack {
+  position: relative;
+
+  height: 500px;
+  width: 313px;
+
+  margin: 0 auto;
+
+  --pack-height: 500px;
+  --pack-width: 313px;
 }

@@ -1,3 +1,4 @@
+// The latest and greatest in artifical intelligence!
 const ALGORITHMS = [() => {}, () => {}];
 
 const setup = () => {
@@ -73,7 +74,7 @@ const renderCanvas = ({ canvasElement, imageData }) => {
   // ****************************************
   ctx.font = `72px Verdana`;
   ctx.filleStyle = "white";
-  ctx.fillText("Hello!", 200, 100, 300);
+  ctx.fillText("Hi!", 200, 100, 300);
 
   // ****************************************
   //      More drawing examples

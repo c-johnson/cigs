@@ -1,0 +1,148 @@
+<!--
+  TODO!: 
+    - Write a color sampler 
+    - Finish the design
+    - Fix proportions
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      :root {
+        --off-white: #f2f6ef;
+        --off-grey: #232323;
+        --off-green: #00ab92;
+      }
+
+      .pack {
+        position: relative;
+
+        height: 500px;
+        width: 314px;
+
+        margin: 100px auto;
+
+        --pack-height: 500px;
+        --pack-width: 314px;
+
+        /* Pack size */
+
+        /*
+         * Top part: 250px
+         * 2nd part: 20px
+         * Top part: 220px
+         * Top part: 10px
+         * Total Height: 500px
+
+         * Width: 943px / 3 = ~315px
+         */
+      }
+
+      .menthol-black {
+        .menthol-black-cover {
+          position: absolute;
+          top: 0;
+          z-index: 0;
+
+          background-color: var(--off-grey);
+          content: "";
+
+          height: 250px;
+          width: var(--pack-width);
+        }
+
+        .menthol-black-cover-stripe {
+          position: absolute;
+          top: 100px;
+          z-index: 1;
+
+          background-color: var(--off-green);
+          content: "";
+
+          height: 150px;
+          width: var(--pack-width);
+
+          clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+        }
+
+        .menthol-black-cover-caret-fill {
+          position: absolute;
+          top: 120px;
+          z-index: 2;
+
+          background-color: var(--off-white);
+          content: "";
+
+          height: 150px;
+          width: var(--pack-width);
+
+          clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+        }
+
+        .menthol-black-body-fill {
+          position: absolute;
+          top: 250px;
+          z-index: 5;
+
+          content: "";
+
+          height: 240px;
+          width: var(--pack-width);
+          background-color: var(--off-white);
+        }
+
+        .menthol-black-footer-fill {
+          position: absolute;
+          top: 490px;
+          z-index: 4;
+
+          content: "";
+
+          height: 10px;
+          width: var(--pack-width);
+          background-color: var(--off-grey);
+        }
+
+        .marlboro-text {
+          text-align: center;
+          font-size: 32px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="the-stuff">
+      <div name="Marlboro" class="pack menthol-black">
+        <div class="menthol-black-cover"></div>
+        <div class="menthol-black-cover-stripe"></div>
+        <div class="menthol-black-cover-caret-fill"></div>
+        <div class="menthol-black-body-fill">
+          <h1 class="marlboro-text">Marlboro</h1>
+        </div>
+        <div class="menthol-black-footer-fill"></div>
+      </div>
+
+      <div>
+        <h1>===</h1>
+      </div>
+
+      <div>
+        <label>Select file</label>
+        <input id="selectFile" type="file" />
+      </div>
+
+      <!-- <div>
+        <canvas id="raster-image"> </canvas>
+      </div> -->
+    </div>
+
+    <!-- Write a thing that takes in an image file, prints it to a <canvas> element, and then reads those pixels in order, then does other stuff. -->
+
+    <script type="javascript">
+
+    </script>
+    <script type="javascript" src="index.js" defer></script>
+  </body>
+</html>
