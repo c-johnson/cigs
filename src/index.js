@@ -1,12 +1,18 @@
 // The latest and greatest in artifical intelligence!
 const ALGORITHMS = [() => {}, () => {}];
 
-if (window.sampler) {
-  console.log("window.sampler - loaded");
-  window.sampler();
+if (window.test) {
+  console.log("[sampler] window.test - loaded");
+  window.test();
 } else {
-  console.log("window.sampler - not loaded");
+  console.log("[sampler] window.test - not loaded");
 }
+
+const rasterElement = document.getElementById("raster-image");
+
+rasterElement.addEventListener("load", () => {
+  console.log("[raster-image] element loaded! top-level");
+});
 
 const setup = () => {
   /* Grab elements */
@@ -30,9 +36,24 @@ const setup = () => {
         const base64ImageData = ev.target.result;
         logState({ base64ImageData });
 
-        renderRaster({ rasterElement, imageData: base64ImageData });
-        renderCanvas({ canvasElement, imageData: base64ImageData });
-        renderCSS({ cssElement, show: true });
+        // TODO [bug]: Wait for `renderRaster` to finish, via a promise, before running `renderCanvas`
+        renderRaster({ rasterElement, base64ImageData });
+
+        rasterElement.addEventListener("load", () => {
+          console.log(
+            "[raster-image] element loaded! inside setup -> selectFileInput;change "
+          );
+
+          renderCanvas({ canvasElement, base64ImageData });
+          renderCSS({ cssElement, show: true });
+        });
+
+        // TODO [bug]: Actually, this doesn't use the JS event loop!
+        // TODO [bug]: It uses the DOM.ContentLoaded event, so hook into that instead.
+        // setTimeout(() => {
+        //   renderCanvas({ canvasElement, base64ImageData });
+        //   renderCSS({ cssElement, show: true });
+        // }, 100);
       };
 
       fileReader.readAsDataURL(file);
@@ -42,9 +63,9 @@ const setup = () => {
   });
 };
 
-const renderRaster = ({ rasterElement, imageData }) => {
+const renderRaster = ({ rasterElement, base64ImageData }) => {
   rasterElement.classList.remove("hidden");
-  rasterElement.src = imageData;
+  rasterElement.src = base64ImageData;
 };
 
 const renderCSS = ({ cssElement, show }) => {
@@ -56,8 +77,11 @@ const renderCSS = ({ cssElement, show }) => {
   }
 };
 
-const renderCanvas = ({ canvasElement, imageData }) => {
+const renderCanvas = ({ canvasElement, base64ImageData }) => {
   const ctx = canvasElement.getContext("2d");
+
+  // const srcImage = document.getElementById("raster-image");
+  // ctx.drawImage(srcImage, 0, 0, 313, 500);
 
   // Q: Background color for <canvas>?
   // https://stackoverflow.com/a/27645436/28971795
@@ -101,7 +125,22 @@ const renderCanvas = ({ canvasElement, imageData }) => {
   //      //developer.mozilla.org/en-US/play
   // ****************************************
 
-  https: logState({ ctx });
+  logState({ ctx });
+
+  const srcImage = document.getElementById("raster-image");
+
+  console.log("srcImage loaded");
+
+  // ctx.drawImage(srcImage, 0, 0);
+  ctx.drawImage(srcImage, 0, 0, 313, 500);
+  // ctx.drawImage(srcImage, 93, 0, 313, 500, 0, 0, 313, 500);
+
+  if (window.sampler) {
+    console.log("[sampler] window.sampler - loaded");
+    window.sampler(base64ImageData);
+  } else {
+    console.log("[sampler] window.sampler - not loaded");
+  }
 };
 
 // TODO: Typescript-ify this up later

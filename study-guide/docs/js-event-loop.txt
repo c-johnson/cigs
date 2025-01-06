@@ -1,0 +1,9 @@
+Good things to read:
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop 
+  - https://www.lydiahallie.com/blog/event-loop
+  - https://iximiuz.com/en/posts/explain-event-loop-in-100-lines-of-code/
+
+Javascript: https://javascript.info/ 
+
+Classic text:
+  - I can't find it 😩
