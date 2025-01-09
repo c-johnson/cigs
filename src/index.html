@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<!-- Note: 
+      - This design is optimized for a 14", Retina, Macbook Pro screen.
+-->
+
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./index.css"></link>
+    <style>
+      .menthol-black {
+        .menthol-black-cover {
+          position: absolute;
+          top: 0;
+          z-index: 0;
+
+          background-color: var(--off-grey);
+          content: "";
+
+          height: 250px;
+          width: var(--pack-width);
+        }
+
+        /* TODO: Fix this */
+        .menthol-black-cover h3 {
+          color: green;
+          margin: 50px auto 0;
+          text-align: center;
+        }
+
+        .menthol-black-cover-stripe {
+          position: absolute;
+          top: 100px;
+          z-index: 1;
+
+          background-color: var(--off-green);
+          content: "";
+
+          height: 150px;
+          width: var(--pack-width);
+
+          clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+        }
+
+        .menthol-black-cover-caret-fill {
+          position: absolute;
+          top: 120px;
+          z-index: 2;
+
+          background-color: var(--off-white);
+          content: "";
+
+          height: 150px;
+          width: var(--pack-width);
+
+          clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+        }
+
+        .menthol-black-body-fill {
+          position: absolute;
+          top: 250px;
+          z-index: 5;
+
+          content: "";
+
+          height: 240px;
+          width: var(--pack-width);
+          background-color: var(--off-white);
+        }
+
+        .menthol-black-footer-fill {
+          position: absolute;
+          top: 490px;
+          z-index: 4;
+
+          content: "";
+
+          height: 10px;
+          width: var(--pack-width);
+          background-color: var(--off-grey);
+        }
+
+        .marlboro-text {
+          text-align: center;
+          font-size: 32px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div style="display: flex; justify-content: space-between; padding: 50px">
+      <div style="display: flex; flex-direction: column">
+        <div style="display: flex; justify-content: space-between">
+          <h4 stye="display: block">Input:</h4>
+          <div>
+            <label style="display: block; text-align: right;">Select file</label>
+            <input id="select-file" type="file" name="imageFile" style="display: block; text-align: right;"/>
+          </div>
+        </div>
+        <h1>===</h1>
+        <div>
+          <img id="raster-image" height="500" width="313" class="hidden" style="width: 100%"/>
+        </div>
+      </div>
+
+      <div>
+        <div style="display: flex; justify-content: space-between">
+          <h4>Workstation:</h4>
+          <div>
+            <span>data source: </span>
+            <span><u>(tbd)</u></span>
+          </div>
+        </div>
+        <h1>===</h1>
+        <canvas
+          id="canvas-workstation"
+          role="presentation"
+          height="500"
+          width="313"
+        ></canvas>
+      </div>
+
+      <div>
+        <h4>Output:</h4>
+        <h1>===</h1>
+        <div id="css-output" class="pack menthol-black hidden">
+          <div class="menthol-black-cover">
+            <h3>MENTHOL</h3>
+          </div>
+          <div class="menthol-black-cover-stripe"></div>
+          <div class="menthol-black-cover-caret-fill"></div>
+          <div class="menthol-black-body-fill">
+            <h1 class="marlboro-text">Marlboro</h1>
+          </div>
+          <div class="menthol-black-footer-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Write a thing that takes in an image file, prints it to a <canvas> element, and then reads those pixels in order, then does other stuff. -->
+    <script type="text/javascript" src="sampler.js" defer></script>
+    <script type="text/javascript" src="index.js" defer></script>
+  </body>
+</html>

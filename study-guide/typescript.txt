@@ -1,0 +1,101 @@
+**From ChatGPT, model 4o**
+
+---
+
+Q:  Is there a way to natively use Typescript, or what's the simplest possible TS bundler/toolkit I can use to run type-checking and type-checking only?
+
+A:  To natively use TypeScript or perform type-checking only without additional tooling, you have several straightforward options. Here's a breakdown:
+
+```
+
+Option 1: Use TypeScript Compiler (tsc)
+
+The TypeScript compiler (tsc) can natively compile TypeScript and perform type-checking. To run type-checking only (without emitting JavaScript), you can configure the compiler accordingly.
+Steps:
+
+    Install TypeScript (if not already installed):
+
+npm install -g typescript
+
+Create a tsconfig.json:
+
+{
+    "compilerOptions": {
+        "noEmit": true,   // Prevent JavaScript output
+        "strict": true    // Enable strict type-checking
+    }
+}
+
+Run the TypeScript Compiler:
+
+    tsc --noEmit
+
+This will type-check your code without generating any output files.
+Option 2: Use tsc Without a tsconfig.json
+
+If you don’t want to set up a tsconfig.json file, you can use the --noEmit flag directly:
+
+tsc yourFile.ts --noEmit --strict
+
+This is the simplest way to perform type-checking only.
+Option 3: Use Deno (TypeScript Built-In)
+
+Deno is a modern runtime for JavaScript and TypeScript that has built-in TypeScript support. It can type-check TypeScript files natively without requiring a build step.
+Steps:
+
+    Install Deno: Follow installation instructions for your platform: https://deno.land/#installation
+    Run Type-Checking:
+
+    deno check yourFile.ts
+
+This performs type-checking only without executing the code.
+Option 4: Use ESLint with TypeScript
+
+If you already use ESLint for linting, you can integrate TypeScript type-checking with it.
+Steps:
+
+    Install ESLint and TypeScript Plugins:
+
+npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+
+Create an ESLint Configuration File (.eslintrc.json):
+
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+        // Custom rules
+    }
+}
+
+Run ESLint:
+
+    npx eslint yourFile.ts
+
+ESLint will lint and type-check your TypeScript files.
+Option 5: Use tsc via esbuild for Speed (Optional)
+
+While esbuild is primarily a bundler, it can type-check TypeScript when paired with tsc. Use this method if you want faster builds alongside type-checking.
+Steps:
+
+    Install esbuild and typescript:
+
+npm install --save-dev esbuild typescript
+
+Run tsc for Type-Checking:
+
+    npx tsc --noEmit
+
+Summary of Simplicity
+
+    Simplest: Use tsc --noEmit for pure type-checking without any output files.
+    Modern Alternative: Use deno check if you want a runtime with TypeScript built-in.
+    Integration with Linting: Use ESLint with the TypeScript plugin for combined linting and type-checking.
+
+For most developers, tsc --noEmit is the go-to for quick and simple type-checking.
+
+```
