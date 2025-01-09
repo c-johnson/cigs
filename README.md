@@ -21,7 +21,7 @@ Program name: raster-2-vector
 
 Source:
 
-![pack](https://github.com/user-attachments/assets/0abb3804-097f-4b9b-bab6-4906969f814e)
+<img width="316" alt="image" src="https://github.com/user-attachments/assets/0abb3804-097f-4b9b-bab6-4906969f814e" />
 
 Target:
 
