@@ -14,3 +14,7 @@ Tldr;
 2. make it vectorized
 
 Program name: raster-2-vector
+
+## Output
+
+### A pack of Marlboro Menthols.
