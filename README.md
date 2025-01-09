@@ -18,3 +18,11 @@ Program name: raster-2-vector
 ## Output
 
 ### A pack of Marlboro Menthols.
+
+Source:
+
+![pack](https://github.com/user-attachments/assets/0abb3804-097f-4b9b-bab6-4906969f814e)
+
+Target:
+
+<img width="316" alt="image" src="https://github.com/user-attachments/assets/4867f921-e312-46a6-9028-da27f1535229" />
