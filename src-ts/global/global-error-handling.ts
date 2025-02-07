@@ -26,9 +26,15 @@ const loggingService: LoggingService = {
 };
 
 window.onerror = function (message, source, lineno, colno, error) {
-  // Check for Typescript non-null assertion errors
+  // TODO: Check for Typescript non-null assertion errors
+
+  // This is a *serious* issue, if we're expecting something in the code that doesn't exist!
+  // So log it to LogLevel.P0
+  const isTypescriptNonNullError = true;
 
   // Log them to <logging-service>
-  loggingService.logLevel = LogLevel.P0;
-  loggingService.log("[URGENT] -- a Typescript non-null assertion failed");
+  if (isTypescriptNonNullError) {
+    loggingService.logLevel = LogLevel.P0;
+    loggingService.log("[URGENT] -- a Typescript non-null assertion failed");
+  }
 };
