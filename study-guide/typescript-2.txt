@@ -1,0 +1,44 @@
+Study guide!:
+
+> Quiz me on Typescript, I have an interview coming up in a couple of hours
+
+Got it! I'll hit you with a mix of beginner to advanced TypeScript questions to make sure you're ready.
+Basic Questions:
+
+    What is TypeScript, and how does it differ from JavaScript?
+    How do you define a variable with a specific type in TypeScript?
+    What are interfaces in TypeScript, and how do they differ from types?
+    What does the readonly modifier do in TypeScript?
+    How do you enable strict type checking in a TypeScript project?
+
+Intermediate Questions:
+
+    Explain the difference between any, unknown, and never types.
+    How do you define a function with optional parameters in TypeScript?
+    What is type assertion, and when would you use it?
+    How do you create a generic function in TypeScript?
+    What is the purpose of the keyof operator?
+
+Advanced Questions:
+
+    What are mapped types, and how do they work?
+    How can you enforce immutability in TypeScript?
+    Explain what utility types are and provide examples of Partial<T>, Pick<T, K>, and Omit<T, K>.
+    What is declaration merging in TypeScript?
+    How does TypeScript handle function overloading?
+
+Code Challenge:
+
+Can you write a TypeScript function that takes an array of items and returns a new array where each item is wrapped in an object with a unique ID? Example:
+
+wrapWithId(["apple", "banana", "cherry"]);
+
+Output:
+
+[
+  { id: 1, value: "apple" },
+  { id: 2, value: "banana" },
+  { id: 3, value: "cherry" }
+]
+
+Let me know if you want more scenario-based or coding challenges!

@@ -1,0 +1,72 @@
+> Is there a way to catch runtime errors like this globally, to present something to the user in the case that something specifically goes wrong, assuming we're doing Option 2 (using the non-null assertion operator, !)?
+
+[link: https://chatgpt.com/share/67a639ed-7b8c-800e-bac8-5c75e3dbce35]
+---
+
+Yes, you can catch runtime errors globally using the window.onerror handler, which allows you to catch unhandled errors (including those caused by trying to invoke methods on null or undefined) and handle them in a centralized way.
+
+Here's how you can do it:
+Using window.onerror for Global Error Handling
+
+You can set up a global error handler that listens for all unhandled errors and presents a user-friendly message or performs some other action when something goes wrong.
+
+// Global error handler for unhandled errors
+window.onerror = function (message, source, lineno, colno, error) {
+  // Here you can customize what to do with the error
+  console.error("Global error caught:", error);
+
+  // Optionally, display a user-friendly message to the user
+  alert("Oops! Something went wrong. Please try again later.");
+
+  // Returning true prevents the default browser handling (such as logging the error to the console)
+  return true;
+};
+
+// Your code using non-null assertion
+const rasterElement = document.getElementById("raster-image")!;
+
+rasterElement.addEventListener("load", () => {
+  console.log("[raster-image] element loaded! top-level");
+});
+
+How window.onerror Works:
+
+    Catches Unhandled Errors: Any uncaught runtime error (such as trying to access properties on null or undefined) will trigger the window.onerror handler.
+
+    Parameters:
+        message: The error message.
+        source: The URL of the script where the error occurred.
+        lineno: The line number where the error occurred.
+        colno: The column number where the error occurred.
+        error: The error object itself, which contains detailed information.
+
+    Returning true: If you return true from the window.onerror handler, it prevents the browser from showing its default error message (which typically logs the error to the console and displays a basic error page).
+
+Drawbacks and Considerations:
+
+    Performance Overhead: Using global error handling for all errors can add overhead. If you are just concerned about specific kinds of errors (e.g., null references), it's better to handle them directly in your code.
+
+    Error Type Specificity: This approach will catch all errors, so you may want to add some additional logic to filter out specific errors or categorize them better.
+
+    User Experience: Although you can catch errors globally, it’s still best practice to prevent errors from occurring in the first place by handling them at the source (like checking for null).
+
+Example of Filtered Global Error Handling
+
+If you only want to catch certain types of errors (like TypeError), you can add filtering logic inside the window.onerror handler:
+
+window.onerror = function (message, source, lineno, colno, error) {
+  if (error instanceof TypeError) {
+    console.error("Caught a TypeError:", error);
+    alert("Oops! Something went wrong. Please try again later.");
+    return true; // Prevent default logging
+  }
+
+  // Handle other errors normally
+  return false; // Let the default browser behavior handle the error
+};
+
+Conclusion:
+
+While it's more TypeScript-idiomatic to handle potential null values with checks upfront (Option 1), using window.onerror can provide a global safety net in case runtime errors occur, especially when you're using non-null assertions (!). However, this should be seen as a last line of defense and should not replace more robust error handling within your application logic.
+
+Let me know if you'd like further details or have any questions!

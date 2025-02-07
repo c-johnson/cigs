@@ -1,0 +1,17 @@
+{
+  "name": "2024-css-practice",
+  "version": "1.0.0",
+  "description": "Description: a web-based GUI tool for image uploading, image manipulation, and generated image output",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "types": "tsc --noEmit -p build/tsconfig.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.23.0",
+    "@typescript-eslint/parser": "^8.23.0",
+    "eslint": "^9.19.0"
+  }
+}
